@@ -144,4 +144,3 @@ MIT License - Lihat file [LICENSE.txt](LICENSE.txt) untuk detail.
 ## Kontak
 
 - GitHub: https://github.com/Fauzan-Aldi/Thresholding
-- Author asli: Omar Alkousa (omar.ok1998@gmail.com)
