@@ -1,146 +1,170 @@
-# Thresholding Medical Images
+# Tutorial: Thresholding
 
-Aplikasi web berbasis Streamlit untuk melakukan **thresholding** pada gambar medis dengan berbagai metode (Manual, Local, dan Global Thresholding).
+Aplikasi web berbasis Streamlit untuk melakukan thresholding pada gambar medis dengan berbagai metode.
 
-![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.0+-red.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-
----
-
-## Overview
-
-Aplikasi ini memungkinkan pengguna untuk:
-- Mengunggah gambar medis (grayscale)
-- Menerapkan thresholding dengan 3 metode berbeda
-- Melihat histogram gambar secara interaktif
-- Menyesuaikan parameter thresholding
-- Membandingkan hasil thresholding dengan gambar asli
+## Daftar Isi
+- [Prasyarat](#prasyarat)
+- [Instalasi](#instalasi)
+- [Menjalankan Aplikasi](#menjalankan-aplikasi)
+- [Cara Penggunaan](#cara-penggunaan)
+- [Metode Thresholding](#metode-thresholding)
 
 ---
 
-## Instalasi & Penggunaan
+## Prasyarat
 
-### Prasyarat
-- Python 3.7 atau lebih tinggi
-- pip (Python package installer)
+Sebelum memulai, pastikan Anda telah menginstall:
+- Python 3.7 atau versi lebih tinggi
+- pip (package installer untuk Python)
 
-### 1. Install Dependencies
+---
 
-```bash
-pip install streamlit scikit-image plotly
-```
+## Instalasi
 
-### 2. Clone Repository (Opsional)
-
+### 1. Clone Repository (Opsional)
+Jika Anda mengambil dari GitHub:
 ```bash
 git clone https://github.com/Fauzan-Aldi/Thresholding.git
 cd Thresholding
 ```
 
-### 3. Jalankan Aplikasi
+### 2. Install Dependencies
+Jalankan perintah berikut untuk menginstall semua library yang dibutuhkan:
 
+```bash
+pip install streamlit scikit-image plotly
+```
+
+Atau jika menggunakan requirements.txt:
+```bash
+pip install -r requirements.txt
+```
+
+**Library yang dibutuhkan:**
+| Library | Fungsi |
+|---------|--------|
+| streamlit | Framework web untuk aplikasi |
+| scikit-image | Pemrosesan gambar dan thresholding |
+| plotly | Visualisasi histogram interaktif |
+
+---
+
+## Menjalankan Aplikasi
+
+### 1. Pastikan File Gambar Tersedia
+Untuk mencoba aplikasi, siapkan file gambar grayscale (contoh: `Lungs.jpg` atau `writing.png` yang sudah tersedia di folder).
+
+### 2. Jalankan Streamlit
 ```bash
 streamlit run app.py
 ```
 
-Aplikasi akan terbuka di browser pada alamat `http://localhost:8501`
+Atau dengan Python:
+```bash
+python -m streamlit run app.py
+```
+
+### 3. Buka di Browser
+Setelah menjalankan perintah di atas, aplikasi akan otomatis terbuka di browser default Anda dengan alamat:
+- **Local URL:** `http://localhost:8501`
 
 ---
 
 ## Cara Penggunaan
 
-### 1. Unggah Gambar
-- Klik tombol **"Unggah file gambar"**
-- Pilih file gambar (JPG, PNG, TIFF) dari komputer
+### Langkah 1: Unggah Gambar
+1. Klik tombol **"Unggah file gambar"**
+2. Pilih file gambar grayscale dari komputer Anda
+3. Aplikasi akan otomatis memuat dan menampilkan gambar
 
-### 2. Pilih Metode Thresholding
-Dari dropdown pilih salah satu metode:
-- **Manual Thresholding** - Atur nilai threshold secara manual
+### Langkah 2: Pilih Metode Thresholding
+Dari dropdown **"Pilih metode thresholding yang diinginkan"**, pilih salah satu:
+- **Manual Thresholding** - Tentukan nilai threshold secara manual
 - **Local Thresholding** - Threshold adaptif berbasis wilayah
-- **Global Thresholding** - Threshold otomatis dengan algoritma
+- **Global Thresholding** - Threshold otomatis untuk seluruh gambar
 
-### 3. Sesuaikan Parameter
-- **Manual**: Geser slider untuk nilai threshold (0-255)
-- **Local**: Pilih metode (Gaussian/Mean/Median) dan ukuran blok
-- **Global**: Pilih algoritma (Otsu, Triangle, Minimum, IsoData)
+### Langkah 3: Sesuaikan Parameter
+Setiap metode memiliki parameter yang dapat disesuaikan:
+- **Manual**: Geser slider untuk menentukan nilai threshold
+- **Local**: Pilih metode adaptif (Gaussian, Mean, dll)
+- **Global**: Pilih algoritma otomatis (Otsu, Triangle, dll)
 
-### 4. Lihat Hasil
-- Histogram gambar ditampilkan secara interaktif
-- Gambar asli dan hasil thresholding ditampilkan berdampingan
-
----
-
-## Fitur Thresholding
-
-| Metode | Deskripsi | Kegunaan |
-|--------|-----------|----------|
-| **Manual** | Tentukan threshold sendiri dengan slider | Eksperimen, kontrol penuh |
-| **Local (Adaptive)** | Threshold berbeda per wilayah | Gambar dengan pencahayaan tidak merata |
-| **Global (Otsu, dll)** | Satu threshold untuk seluruh gambar | Gambar dengan kontras baik |
+### Langkah 4: Lihat Hasil
+- Histogram gambar akan ditampilkan
+- Gambar hasil thresholding akan muncul
+- Bandingkan gambar asli dengan hasil
 
 ---
 
-## Struktur Project
+## Metode Thresholding
 
-```
-Thresholding/
-├── app.py                  # Aplikasi utama Streamlit
-├── global_thresholding.py  # Modul Global Thresholding
-├── local_thresholding.py   # Modul Local/Adaptive Thresholding
-├── manual_thresholding.py  # Modul Manual Thresholding
-├── requirements.txt        # Dependencies
-├── tutorial.md            # Tutorial lengkap
-├── Lungs.jpg             # Contoh gambar
-└── writing.png           # Contoh gambar
-```
+### 1. Manual Thresholding
+Memungkinkan Anda menentukan nilai threshold sendiri menggunakan slider.
+- **Kelebihan**: Kontrol penuh atas hasil
+- **Kegunaan**: Eksperimen dan penyesuaian manual
+
+### 2. Local Thresholding (Adaptive Thresholding)
+Menerapkan threshold berbeda untuk setiap wilayah gambar berdasarkan karakteristik lokal.
+- **Metode**: Gaussian, Mean, Median
+- **Block Size**: Ukuran wilayah lokal
+- **Offset**: Penyesuaian nilai threshold
+- **Kegunaan**: Gambar dengan pencahayaan tidak merata
+
+### 3. Global Thresholding
+Menggunakan satu nilai threshold untuk seluruh gambar dengan algoritma otomatis.
+- **Algoritma**:
+  - **Otsu**: Meminimalkan varians intra-kelas
+  - **Triangle**: Berbasis geometri
+  - **Minimum**: Berbasis histogram multimodal
+  - **IsoData**: Iteratif thresholding
+- **Kegunaan**: Gambar dengan kontras baik dan pencahayaan merata
 
 ---
 
 ## Troubleshooting
 
-### Module Not Found Error
+### Error: "No module named 'skimage'"
+**Solusi**: Install scikit-image
 ```bash
-# Install dependencies yang kurang
-pip install streamlit scikit-image plotly
+pip install scikit-image
 ```
 
-### Gambar Tidak Terbaca
-- Pastikan file gambar ada di folder yang sama dengan `app.py`
-- Gunakan format: JPG, PNG, atau TIFF
-- Gambar sebaiknya dalam mode grayscale
+### Error: "No module named 'streamlit'"
+**Solusi**: Install streamlit
+```bash
+pip install streamlit
+```
+
+### Gambar tidak terbaca
+**Solusi**: Pastikan:
+- File gambar ada di folder yang sama dengan `app.py`
+- Format gambar didukung (JPG, PNG, TIFF)
+- Gambar dalam mode grayscale
 
 ---
 
-## Dependencies
-
-| Library | Version | Purpose |
-|---------|---------|---------|
-| streamlit | latest | Web framework |
-| scikit-image | latest | Image processing |
-| plotly | latest | Interactive visualization |
-
----
-
-## Tutorial Lengkap
-
-Untuk tutorial lengkap dengan penjelasan detail, lihat file [tutorial.md](tutorial.md).
-
----
-
-## Screenshot
-
-Aplikasi memiliki tampilan dengan:
-- Background gradasi biru-putih
-- Judul "Thresholding Medical Images" berwarna putih
-- Interface bersih tanpa menu tambahan
+## Struktur File
+```
+Thresholding/
+├── app.py                  # Aplikasi utama Streamlit
+├── global_thresholding.py  # Modul thresholding global
+├── local_thresholding.py   # Modul thresholding lokal
+├── manual_thresholding.py  # Modul thresholding manual
+├── requirements.txt        # Daftar dependencies
+├── Lungs.jpg              # Contoh gambar
+├── writing.png            # Contoh gambar
+└── tutorial.md            # File tutorial ini
+```
 
 ---
 
-## Lisensi
+## Tips
+- Gunakan gambar grayscale untuk hasil terbaik
+- Cobalah semua metode untuk melihat mana yang paling cocok untuk gambar Anda
+- Sesuaikan parameter pada Local Thresholding untuk gambar kompleks
+- Screenshot hasil thresholding untuk dokumentasi
 
-MIT License - Lihat file [LICENSE.txt](LICENSE.txt) untuk detail.
+---
 
 ## Kontak
-
-- GitHub: https://github.com/Fauzan-Aldi/Thresholding
+Jika ada pertanyaan atau masalah, silakan buat issue di repository GitHub.
